@@ -1,45 +1,82 @@
-# AWS Terraform Infrastructure
+# 🌐 AWS Terraform Infrastructure
 
 This repository contains Terraform code to deploy a **highly available web application architecture** on AWS.
 
 ## 🚀 Architecture Overview
 
-- **VPC** with CIDR `10.0.0.0/16`
-- **Public Subnets**: 2 (for web servers & load balancer)
-- **Private Subnets**: 2 (for RDS database)
-- **Internet Gateway + Route Tables** for public access
-- **Security Groups**:
-  - `allow_web`: Allows SSH (22), HTTP (80), HTTPS (443)
-  - `allow_db`: Allows MySQL (3306) from web security group only
-- **EC2 Instances** (Apache2 web servers in public subnets)
-- **Application Load Balancer** distributing traffic across EC2 instances
-- **RDS MySQL** instance in private subnets (not publicly accessible)
+### Networking
 
-## 🏗️ Architecture Diagram
+- VPC with CIDR 10.0.0.0/16
 
-![AWS Architecture](aws_architecture.png)
+- 2 Public Subnets (Web + Load Balancer)
 
-## 🔑 Prerequisites
+- 2 Private Subnets (RDS Database)
 
-- AWS account
-- Terraform installed (`>= 1.0`)
-- Existing AWS key pair (update `key_name` variable)
-- Provide values for `aws_access_key`, `aws_secret_key`, and `ami_id`
+- Internet Gateway & Route Tables for public access
+
+ ### Security
+
+- Security Group: allow_web → SSH (22), HTTP (80), HTTPS (443)
+
+- Security Group: allow_db → MySQL (3306) from web security group only
+
+### Compute & Database
+
+- EC2 Instances (Apache2 web servers in public subnets)
+
+- Application Load Balancer (ALB) distributing traffic across EC2s
+
+- RDS MySQL in private subnets (no public access)**
+
+##  🔑 Prerequisites
+
+- AWS Account
+
+- Terraform (>= 1.0)
+
+- Existing AWS key pair (key_name variable)
+
+- AWS credentials set via:
+
+- Environment variables (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+
+- Or AWS CLI profile
+
+- (Recommended: Use AWS Secrets Manager)
+
+- 
+## 📂 Project Structure
+
+
+├── main.tf          # Root configuration
+├── vpc.tf           # VPC, Subnets, Route Tables, IGW
+├── ec2.tf           # EC2 Instances + ALB
+├── rds.tf           # RDS MySQL
+├── variables.tf     # Input variables
+├── outputs.tf       # Output values (ALB DNS, etc.)
+└── aws_architecture.png
 
 
 
-### 🚀 How to Deploy
-
-## ⚡ Usage
+## 🚀 Deployment Steps
 
 ```bash
+# Clone the repo
 git clone https://github.com/Mairazul-Khan/Terraform-Project.git
+cd Terraform-Project
 
-
-```sh
+# Initialize Terraform
 terraform init
+
+# Validate configuration
+terraform validate
+
+# Preview changes
 terraform plan
-terraform apply -auto-approve
+
+# Deploy infrastructure
+terraform apply
+
 ```
 
 ## 🛑 Cleanup
@@ -47,7 +84,7 @@ terraform apply -auto-approve
 To destroy all resources:
 
 ```sh
-terraform destroy -auto-approve
+terraform destroy
 ```
 
 ---
