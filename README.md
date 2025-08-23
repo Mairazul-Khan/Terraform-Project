@@ -44,9 +44,8 @@ This repository contains Terraform code to deploy a **highly available web appli
 
 - (Recommended: Use AWS Secrets Manager)
 
-- 
 ## 📂 Project Structure
-
+```
 ├── main.tf          # Provider, backend config, high-level resources/modules
 ├── vpc.tf           # VPC, Subnets, Route Tables, NAT/IGW, Security Groups
 ├── ec2.tf           # EC2 Instances, Auto Scaling Group, ALB + Target Groups
@@ -54,7 +53,7 @@ This repository contains Terraform code to deploy a **highly available web appli
 ├── variables.tf     # Input variables (VPC CIDR, instance type, DB creds, etc.)
 ├── outputs.tf       # Output values (ALB DNS name, VPC ID, DB endpoint)
 └── aws_architecture.png   # Architecture diagram for documentation
-
+```
 ## 🚀 Deployment Steps
 
 ```bash
