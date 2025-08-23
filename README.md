@@ -47,16 +47,13 @@ This repository contains Terraform code to deploy a **highly available web appli
 - 
 ## 📂 Project Structure
 
-
-├── main.tf          # Root configuration
-├── vpc.tf           # VPC, Subnets, Route Tables, IGW
-├── ec2.tf           # EC2 Instances + ALB
-├── rds.tf           # RDS MySQL
-├── variables.tf     # Input variables
-├── outputs.tf       # Output values (ALB DNS, etc.)
-└── aws_architecture.png
-
-
+├── main.tf          # Provider, backend config, high-level resources/modules
+├── vpc.tf           # VPC, Subnets, Route Tables, NAT/IGW, Security Groups
+├── ec2.tf           # EC2 Instances, Auto Scaling Group, ALB + Target Groups
+├── rds.tf           # RDS MySQL, Subnet Group, Parameter Group
+├── variables.tf     # Input variables (VPC CIDR, instance type, DB creds, etc.)
+├── outputs.tf       # Output values (ALB DNS name, VPC ID, DB endpoint)
+└── aws_architecture.png   # Architecture diagram for documentation
 
 ## 🚀 Deployment Steps
 
