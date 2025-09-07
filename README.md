@@ -4,7 +4,7 @@ This repository contains Terraform code to deploy a **highly available web appli
 
 ## 🚀 Architecture Overview
 
-### Networking
+## Networking
 
 - VPC with CIDR 10.0.0.0/16
 
@@ -14,13 +14,13 @@ This repository contains Terraform code to deploy a **highly available web appli
 
 - Internet Gateway & Route Tables for public access
 
- ### Security
+ ## Security
 
 - Security Group: allow_web → SSH (22), HTTP (80), HTTPS (443)
 
 - Security Group: allow_db → MySQL (3306) from web security group only
 
-### Compute & Database
+## Compute & Database
 
 - EC2 Instances (Apache2 web servers in public subnets)
 
